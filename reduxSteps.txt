@@ -1,0 +1,38 @@
+
+1 - create action creater : called emailchanged
+
+const emailchanged = (text)=>{
+  return{
+    type:'EMAIL_CHANGED',
+    payload: text
+  };
+}
+
+2- create reducer :
+
+import {EMAIL_CHANGED} from '../actions/types';
+
+const INITIAL_AUTH={'email':''};
+export default (state = INITIAL_AUTH,action)=>{
+  switch(action.type){
+    case EMAIL_CHANGED :
+      return {...state , email:action.payload}
+    default:
+      return state;
+  }
+}
+
+3- in component that will connect with the state :
+
+onEmailChange(text){
+  this.props.emailchanged(text);
+}
+4- convert state to props :
+
+mapStateToProps = state=>{
+  return {
+    email : state.auth.email
+  }
+
+5-set  the component value to
+   value={this.props.email}
